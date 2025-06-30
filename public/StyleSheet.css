@@ -1,0 +1,444 @@
+/* === Grundinställningar === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Julius Sans One", sans-serif;
+    background-color:#E6E3DB;
+    color: #FFFFFF;
+    line-height: 1.6;
+}
+
+/* === Header === */
+.header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    background-color: transparent;
+}
+
+.header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 81px;
+    color: #5f6b61	;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 16px;
+    color: #7E8B7C;
+}
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 600px; /* justera efter behov */
+}
+
+.mySlides {
+    display: flex;
+    animation: scroll-left 60s linear infinite;
+    width: max-content;
+}
+
+.mySlides img {
+    height: 600px;
+    margin-right: 5px; /* valfritt mellanrum */
+    flex-shrink: 0;
+}
+
+@keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+/* === Navigering === */
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.text-button {
+    font-size: 16px;
+    font-family: "Julius Sans One", sans-serif;
+    color: #4a4a4a;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.text-button:hover {
+    background-color: #5f6b61;
+    color: #fff;
+}
+
+.text-button.active {
+    background-color: #7E8B7C	;
+    color: #fff;
+}
+
+/* === Sektioner === */
+.information {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    font-family: "Playfair", serif;
+}
+
+.image-map-hover {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    margin: 20px 0;
+    border-radius: 12px;
+}
+
+.hover-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10;
+}
+
+.map-overlay iframe {
+    filter: grayscale(100%) brightness(85%) contrast(110%);
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.image-map-hover:hover .map-overlay {
+    display: block;
+}
+/* Bild och text till vänster/höger */
+.information-text,
+.map {
+    flex: 1 1 48%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.information-text2,
+.map {
+    flex: 1 1 48%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.information-text h2,
+.information-text2 h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    color: #5f6b61;
+}
+
+.information-text p,
+.information-text2 p {
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.information img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Karta */
+.map iframe {
+
+    width: 100%;
+    height: 475px;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Bröllopsmiddag & fest (fullbredd) */
+.information-text2 {
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+/* Our story layout */
+.ourStory {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+.ourStory h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
+}
+.ourStory p {
+    font-family: 'Delius', sans-serif;
+}
+
+.firstMeeting, .secondMeeting {
+    background-color: #7E8B7C;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* === Bridalparty layout === */
+
+.bridalparty {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 1rem;
+    background-color: #fffaf6;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.bridalparty h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #6d5d52;
+    margin-bottom: 2rem;
+}
+
+.brudtärnor, .brudgummar, .värdpar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.person {
+    background-color: #fffaf6;
+    border: 2px solid #f8f2e4;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.person h2 {
+    font-family: "Julius Sans One", sans-serif;
+    font-size: 1.8rem;
+    color: #5f6b61;
+    margin-bottom: 0.5rem;
+}
+
+.person p {
+    font-family: 'Delius', sans-serif;
+    font-size: 1rem;
+    color: #444;
+}
+/* === Rsvp layout === */
+
+/* === RSVP Formulär === */
+
+.rsvp {
+    background-color: #fffaf6; /* ljus bakgrund som bridalparty */
+    max-width: 500px;
+    margin: 2rem auto 4rem;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    font-family: "Julius Sans One", sans-serif;
+    color: #5f6b61;
+}
+
+.rsvp h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #6d5d52;
+}
+
+.rsvp label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #7E8B7C;
+}
+
+.rsvp input[type="text"],
+.rsvp input[type="number"],
+.rsvp textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 1.2rem;
+    border: 1.5px solid #7E8B7C;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #5f6b61;
+    background-color: #fffaf6;
+    transition: border-color 0.3s ease;
+}
+
+.rsvp input[type="text"]:focus,
+.rsvp input[type="number"]:focus,
+.rsvp textarea:focus {
+    border-color: #5f6b61;
+    outline: none;
+    box-shadow: 0 0 6px #7E8B7C;
+}
+
+.rsvp textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.rsvp button {
+    width: 100%;
+    background-color: #7E8B7C;
+    border: none;
+    padding: 14px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rsvp button:hover {
+    background-color: #6d5d52;
+}
+
+#osa-message {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: #6d5d52;
+}
+
+/* === Responsivitet === */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .information-text,
+    .information-text2 {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+
+    .information-text img,
+    .information-text2 img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .header h1 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .header p {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .button-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .text-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        width: 80%;
+        text-align: center;
+    }
+
+    .information {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .information-text,
+    .information-text2 {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .information-text h2,
+    .information-text2 h2 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .information-text p,
+    .information-text2 p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .map iframe {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .rsvp {
+        padding: 1.5rem;
+        margin: 1.5rem 1rem 3rem;
+    }
+
+    .rsvp h2 {
+        font-size: 2rem;
+    }
+
+    .rsvp button {
+        font-size: 1.3rem;
+    }
+}
+

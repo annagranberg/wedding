@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna & Joels bröllop</title>
+    <link rel="stylesheet" href="/StyleSheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Darumadrop+One&family=Delius&family=Julius+Sans+One&family=Pacifico&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
+  
+    <div class="rsvp">
+      <h2>OSA - Svara gärna!</h2>
+      <p>Vänligen fyll i formuläret med ditt namn och antal personer som kommer från din inbjudan. 
+        Om ni är flera i familjen eller sällskapet, fyll gärna i en OSA per inbjudan för att hjälpa oss med planeringen.</p>
+        <p>Om du har några speciella önskemål eller allergier, vänligen skriv det i kommentarsfältet.</p>
+      <form id="osa-form">
+        <label for="namn">Namn:</label>
+        <input type="text" id="namn" name="namn" required>
+      
+        <label for="antal">Antal personer:</label>
+        <input type="number" id="antal" name="antal" required min="1">
+      
+        <label for="kommentar">Kommentar:</label>
+        <textarea id="kommentar" name="kommentar"></textarea>
+      
+        <button type="submit">Skicka OSA</button>
+      </form>
+      <div id="osa-message"></div>
+    </div>
+  
+    <script>
+      const form = document.getElementById('osa-form');
+      const messageDiv = document.getElementById('osa-message');
+  
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+  
+        const data = {
+          namn: form.namn.value,
+          antal: form.antal.value,
+          kommentar: form.kommentar.value
+        };
+  
+        fetch('/rsvp/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+          messageDiv.textContent = result.message || 'OSA skickad!';
+          form.reset();
+        })
+        .catch(error => {
+          messageDiv.textContent = 'Något gick fel, försök igen.';
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>  

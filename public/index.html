@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna & Joels bröllop</title>
+    <link rel="stylesheet" href="/StyleSheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Darumadrop+One&family=Delius&family=Julius+Sans+One&family=Pacifico&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <script>
+      fetch('header.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('header-placeholder').innerHTML = html;
+        });
+    </script>
+
+
+<div class="information">
+    <div class="information-text">
+    <!-- Vigseln - Bild med hover-karta -->
+    <h2>Vigseln</h2>
+    <p>
+        Vigseln kommer äga rum på Fosie Kyrka i Malmö klockan 15.00.
+    </p>
+    <div class="image-map-hover">
+        <img src="/bilder/kyrka.png" alt="kyrka" class="hover-image">
+        <div class="map-overlay">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2256.258629283989!2d13.022538611676607!3d55.56269557290184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a1043316c8c7%3A0x4718aece358bcb15!2sFosie%20church!5e0!3m2!1ssv!2sse!4v1745584158102!5m2!1ssv!2sse"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    </div>
+    <!-- Informationstext -->
+    <div class="information-text2">
+        <h2>Bröllopsmiddag & fest</h2>
+        <p>
+            Bröllopsmiddag & fest kommer hållas vid Gourmetgården i Katrinetorp, Malmö. Mingel börjar vid 17:30, följt av middag och därefter en riktig fest!
+        </p>
+    </div>
+
+    <!-- Middagslokal - Bild med hover-karta -->
+    <div class="image-map-hover">
+        <img src="/bilder/gourmetgarden.png" alt="gourmetgården" class="hover-image">
+        <div class="map-overlay">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2256.9317887785937!2d13.001293577258771!3d55.55097367301011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a18d87bd3dbd%3A0x5a2f95c69858db47!2sGourmetg%C3%A5rden!5e0!3m2!1sen!2sse!4v1747080571489!5m2!1sen!2sse"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>
+
+
