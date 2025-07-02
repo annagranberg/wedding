@@ -320,6 +320,29 @@ body {
     resize: vertical;
 }
 
+.rsvp select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 1.2rem;
+    border: 1.5px solid #7E8B7C;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #5f6b61;
+    background-color: #fffaf6;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none;  /* ta bort default pilar i vissa webbläsare */
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.rsvp select:focus {
+    border-color: #5f6b61;
+    outline: none;
+    box-shadow: 0 0 6px #7E8B7C;
+}
+
 .rsvp button {
     width: 100%;
     background-color: #7E8B7C;
