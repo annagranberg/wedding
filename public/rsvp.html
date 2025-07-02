@@ -50,9 +50,9 @@
   
         const data = {
           namn: form.namn.value,
-          antal: form.antal.value,
-          kommentar: form.kommentar.value
-        };
+          rsvp: form.status.value,    
+          specialkost: form.kommentar.value  
+          };
   
         fetch('/rsvp/send', {
           method: 'POST',
