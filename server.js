@@ -36,43 +36,56 @@ const auth = new google.auth.GoogleAuth({
 });
 
 const sheets = google.sheets({ version: 'v4', auth });
-const SPREADSHEET_ID = '17nXZNrbD8Gf2JeoTXVqCTdUMXKG9VGcpD1ZaxD61u4Q';// sheet id
-const SHEET_NAME = 'Sheet1'; // <-- Fliknamnet i Google Sheets
+const SPREADSHEET_ID = '1Q4jz6KWrQ3mYS_XTq4wdTROKFM2vnQr63somTaR6VdA';// sheet id
+const SHEET_NAME = 'Gästlista'; // <-- Fliknamnet i Google Sheets
 
 // === RSVP/OSA-endpoint ===
 app.post('/rsvp/send', async (req, res) => {
-  const { namn, antal, kommentar } = req.body;
+  const { namn, rsvp, specialkost } = req.body;
 
-  if (!namn || !antal) {
-    return res.status(400).send({ message: 'Namn och antal krävs' });
+  if (!namn || !rsvp) {
+    return res.status(400).send({ message: 'Namn och OSA krävs' });
   }
 
-  const data = JSON.stringify(req.body);
-
-  // Spara till osa.json
-  fs.appendFile('osa.json', data + '\n', err => {
-    if (err) {
-      console.error('Fel vid skrivning till osa.json:', err);
-    }
-  });
-
-  // Lägg till i Google Sheet
   try {
-    await sheets.spreadsheets.values.append({
+    // Hämta alla rader i arket
+    const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:C`,
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [[namn, antal, kommentar || '']],
-      },
+      range: `${SHEET_NAME}!A:C`, // Kolumnerna Namn, RSVP, Specialkost
     });
 
-    res.send({ message: 'OSA mottaget – tack!' });
+    const rows = response.data.values || [];
+    const nameIndex = rows.findIndex(row => row[0] && row[0].toLowerCase() === namn.toLowerCase());
+
+    if (nameIndex !== -1) {
+      // Uppdatera befintlig rad
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A${nameIndex + 1}:C${nameIndex + 1}`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [[namn, rsvp, specialkost || '']],
+        },
+      });
+    } else {
+      // Lägg till ny rad
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A:C`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [[namn, rsvp, specialkost || '']],
+        },
+      });
+    }
+
+    res.send({ message: 'OSA sparad – tack!' });
   } catch (error) {
     console.error('Fel vid Google Sheets:', error);
     res.status(500).send({ message: 'Kunde inte spara i Google Sheets' });
   }
 });
+
 
 // === Bilduppladdning ===
 app.post('/upload', upload.single('photo'), (req, res) => {
