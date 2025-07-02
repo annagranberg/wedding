@@ -56,7 +56,7 @@ body {
     100% {
       transform: translateX(-50%);
     }
-  }
+  }  
 
 /* === Navigering === */
 .button-row {
