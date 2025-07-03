@@ -1,143 +1,127 @@
 <!DOCTYPE html>
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anna & Joels bröllop</title>
-    <link rel="stylesheet" href="/StyleSheet.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Darumadrop+One&family=Delius&family=Julius+Sans+One&family=Pacifico&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anna & Joels bröllop</title>
+  <link rel="stylesheet" href="/StyleSheet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Darumadrop+One&family=Delius&family=Julius+Sans+One&family=Pacifico&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <div class ="header"> 
-        <h1>Anna & Joel</h1>
-        <p>1 Augusti 2026</p>
-        <div class="button-row">
-          <button data-page="home" onclick="loadPage('home')" class="text-button">Information</button>
-          <button data-page="ourStory" onclick="loadPage('ourStory')" class="text-button">Vår story</button>
-          <button data-page="faq" onclick="loadPage('faq')" class="text-button">FaQ</button>
-          <button data-page="bridalparty" onclick="loadPage('bridalparty')" class="text-button">Brudfölje</button>
-          <button data-page="rsvp" onclick="loadPage('rsvp')" class="text-button">OSA</button>
-          
-
-        </div>
-        <div class="slideshow-container">
-            <div class="mySlides">
-              <img src="/bilder/3.jpg" alt="3">
-              <img src="/bilder/80.jpeg" alt="8">
-              <img src="/bilder/5.jpeg" alt="5">
-              <img src="/bilder/11.jpeg" alt="11">
-              <img src="/bilder/6.jpeg" alt="6">
-              <img src="/bilder/2.jpg" alt="2">
-              <img src="/bilder/7.jpeg" alt="7">
-              <img src="/bilder/9.jpeg" alt="9">
-              <img src="/bilder/10.jpeg" alt="10">
-              <img src="/bilder/12.jpg" alt="12">
-          
-              <!-- Duplicerat innehåll för sömlös loop -->
-              <img src="/bilder/3.jpg" alt="3">
-              <img src="/bilder/80.jpeg" alt="8">
-              <img src="/bilder/5.jpeg" alt="5">
-              <img src="/bilder/11.jpeg" alt="11">
-              <img src="/bilder/6.jpeg" alt="6">
-              <img src="/bilder/2.jpg" alt="2">
-              <img src="/bilder/7.jpeg" alt="7">
-              <img src="/bilder/9.jpeg" alt="9">
-              <img src="/bilder/10.jpeg" alt="10">
-              <img src="/bilder/12.jpg" alt="12">
-            </div>
-          </div>          
+  <div class="header"> 
+    <h1>Anna & Joel</h1>
+    <p>1 Augusti 2026</p>
+    <div class="button-row">
+      <button data-page="home" onclick="loadPage('home')" class="text-button">Information</button>
+      <button data-page="ourStory" onclick="loadPage('ourStory')" class="text-button">Vår story</button>
+      <button data-page="faq" onclick="loadPage('faq')" class="text-button">FaQ</button>
+      <button data-page="bridalparty" onclick="loadPage('bridalparty')" class="text-button">Brudfölje</button>
+      <button data-page="rsvp" onclick="loadPage('rsvp')" class="text-button">OSA</button>
     </div>
 
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <img src="/bilder/3.jpg" alt="3" />
+        <img src="/bilder/80.jpeg" alt="8" />
+        <img src="/bilder/5.jpeg" alt="5" />
+        <img src="/bilder/11.jpeg" alt="11" />
+        <img src="/bilder/6.jpeg" alt="6" />
+        <img src="/bilder/2.jpg" alt="2" />
+        <img src="/bilder/7.jpeg" alt="7" />
+        <img src="/bilder/9.jpeg" alt="9" />
+        <img src="/bilder/10.jpeg" alt="10" />
+        <img src="/bilder/12.jpg" alt="12" />
 
-<div id="content-container">
+        <!-- Duplicerat innehåll för sömlös loop -->
+        <img src="/bilder/3.jpg" alt="3" />
+        <img src="/bilder/80.jpeg" alt="8" />
+        <img src="/bilder/5.jpeg" alt="5" />
+        <img src="/bilder/11.jpeg" alt="11" />
+        <img src="/bilder/6.jpeg" alt="6" />
+        <img src="/bilder/2.jpg" alt="2" />
+        <img src="/bilder/7.jpeg" alt="7" />
+        <img src="/bilder/9.jpeg" alt="9" />
+        <img src="/bilder/10.jpeg" alt="10" />
+        <img src="/bilder/12.jpg" alt="12" />
+      </div>
+    </div>          
+  </div>
+
+  <div id="content-container">
     <!-- Här kommer innehållet laddas in -->
   </div>
 
   <script>
     async function loadPage(page, addToHistory = true) {
-  try {
-    const response = await fetch(`${page}.html`);
-    if (!response.ok) throw new Error('Kunde inte ladda sidan');
-    const html = await response.text();
+      try {
+        const response = await fetch(`${page}.html`);
+        if (!response.ok) throw new Error('Kunde inte ladda sidan');
+        const html = await response.text();
 
-    const container = document.getElementById('content-container');
-    container.innerHTML = html;
+        const container = document.getElementById('content-container');
+        container.innerHTML = html;
 
-    // Markera rätt knapp som aktiv
-    document.querySelectorAll('.text-button').forEach(button => {
-      // Ta bort aktiv klass från alla
-      button.classList.remove('active');
-      // Om knappens href matchar sidan, lägg på aktiv klass
-      const btnPage = button.getAttribute('data-page');
-    if (btnPage === page) {
-      button.classList.add('active');
-    }
-    });
+        // Markera rätt knapp som aktiv
+        document.querySelectorAll('.text-button').forEach(button => {
+          button.classList.remove('active');
+          if (button.getAttribute('data-page') === page) {
+            button.classList.add('active');
+          }
+        });
 
-    if (addToHistory) {
-      history.pushState({ page }, '', `/${page}`);
-    }
+        if (addToHistory) {
+          history.pushState({ page }, '', `/${page}`);
+        }
 
-    // Kör eventuella script i den inladdade HTML:en (om du har några)
-    container.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
+        if (page === 'rsvp') {
+          attachRsvpHandler();
+        }
+      } catch (error) {
+        document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
       }
-      document.body.appendChild(newScript);
-      oldScript.remove();
+    }
+
+    window.addEventListener('popstate', event => {
+      if (event.state && event.state.page) {
+        loadPage(event.state.page, false);
+      }
     });
 
-    if (page === 'rsvp') {
-      attachRsvpHandler();
-    }
-  } catch (error) {
-    document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
-  }
-}
+    function attachRsvpHandler() {
+      const form = document.getElementById('osa-form');
+      const messageDiv = document.getElementById('osa-message');
+      if (!form) return;
 
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-function attachRsvpHandler() {
-  const form = document.getElementById('osa-form');
-  const messageDiv = document.getElementById('osa-message');
-  if (!form) return;
+        const data = {
+          namn: form.namn.value.trim(),
+          rsvp: form.status.value,
+          specialkost: form.kommentar.value.trim()
+        };
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
+        console.log('Skickar följande till servern:', data);
 
-    const data = {
-      namn: form.namn.value.trim(),
-      rsvp: form.status.value,
-      specialkost: form.kommentar.value.trim()
-    };
-
-    console.log('Skickar följande till servern:', data); 
-
-    fetch('/rsvp/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(result => {
-        messageDiv.textContent = result.message || 'OSA skickad!';
-    
-        form.reset();
-      })
-      .catch(error => {
-        messageDiv.textContent = 'Något gick fel, försök igen.';
-        console.error('Error:', error);
+        fetch('/rsvp/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(result => {
+            messageDiv.textContent = result.message || 'OSA skickad!';
+            form.reset();
+          })
+          .catch(error => {
+            messageDiv.textContent = 'Något gick fel, försök igen.';
+            console.error('Error:', error);
+          });
       });
-  });
-}
+    }
 
-// Exempel: ladda startsidan vid första laddning
-loadPage('home');
-
+    // Ladda startsidan vid första laddning
+    loadPage('home');
   </script>
 </body>
 </html>
-
