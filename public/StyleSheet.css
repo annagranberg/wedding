@@ -84,10 +84,12 @@ body {
 }
 
 .text-button.active {
-    background-color: #333; /* Mörk bakgrund */
-    color: white;           /* Vit text */
-    font-weight: bold;
-    border-radius: 4px;
+    background-color: #5f6b61; 
+    color: #fff;           
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 
 /* === Sektioner === */
