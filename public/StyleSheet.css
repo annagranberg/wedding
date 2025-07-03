@@ -84,12 +84,10 @@ body {
 }
 
 .text-button.active {
-    background-color: #5f6b61; 
+    background: #5f6b61; 
     color: #fff;           
+    border-radius: 4px;
     padding: 12px 24px;
-    border: none;
-    background: none;
-    cursor: pointer;
   }
 
 /* === Sektioner === */
