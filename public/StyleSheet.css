@@ -84,9 +84,11 @@ body {
 }
 
 .text-button.active {
-    background-color: #7E8B7C	;
-    color: #fff;
-}
+    background-color: #333; /* Mörk bakgrund */
+    color: white;           /* Vit text */
+    font-weight: bold;
+    border-radius: 4px;
+  }
 
 /* === Sektioner === */
 .information {
