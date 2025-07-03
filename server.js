@@ -98,6 +98,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/rsvp', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -110,7 +114,7 @@ app.get('/bridalparty', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/onskelista', (req, res) => {
+app.get('/faq', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
