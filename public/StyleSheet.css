@@ -203,14 +203,16 @@ body {
 }
 .ourStory h2 {
     font-family: 'Dancing Script', cursive;
+    color: #5f6b61;
     font-size: 35px;
 }
 .ourStory p {
-    font-family: 'Delius', sans-serif;
+    font-family: "Julius Sans One", sans-serif;
+    color: black
 }
 
 .firstMeeting, .secondMeeting {
-    background-color: #7E8B7C;
+    background-color: #fffaf6;
     padding: 1.5rem 2rem;
     margin-bottom: 2.5rem;
     border-radius: 12px;
@@ -284,7 +286,7 @@ body {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     text-align: center;
-    color: #6d5d52;
+    color: #5f6b61;
 }
 .rsvp p {
     margin-bottom: 1.5rem;
