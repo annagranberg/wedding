@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,55 +7,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Darumadrop+One&family=Delius&family=Julius+Sans+One&family=Pacifico&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="header-placeholder"></div>
-    <script>
-      fetch('header.html')
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById('header-placeholder').innerHTML = html;
-        });
-    </script>
+    <div class ="header"> 
+        <h1>Anna & Joel</h1>
+        <p>1 Augusti 2026</p>
+        <div class="button-row">
+            <button onclick="loadPage('home')" class="text-button">Information</a>
+            <button onclick="loadPage('ourStory')" class="text-button">Vår story</a>
+            <button onclick="loadPage('onskelista')" class="text-button">FaQ</a>
+            <button onclick="loadPage('bridalparty')" class="text-button">Brudfölje</a>
+            <button onclick="loadPage('rsvp')" class="text-button">OSA</a>
 
-<!-- 
-<div class="information">
-    <div class="information-text">
-    
-    <h2>Vigseln</h2>
-    <p>
-        Vigseln kommer äga rum på Fosie Kyrka i Malmö klockan 15.00.
-    </p>
-    <div class="image-map-hover">
-        <img src="/bilder/kyrka.png" alt="kyrka" class="hover-image">
-        <div class="map-overlay">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2256.258629283989!2d13.022538611676607!3d55.56269557290184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a1043316c8c7%3A0x4718aece358bcb15!2sFosie%20church!5e0!3m2!1ssv!2sse!4v1745584158102!5m2!1ssv!2sse"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+        <div class="slideshow-container">
+            <div class="mySlides">
+              <img src="/bilder/3.jpg" alt="3">
+              <img src="/bilder/80.jpeg" alt="8">
+              <img src="/bilder/5.jpeg" alt="5">
+              <img src="/bilder/11.jpeg" alt="11">
+              <img src="/bilder/6.jpeg" alt="6">
+              <img src="/bilder/2.jpg" alt="2">
+              <img src="/bilder/7.jpeg" alt="7">
+              <img src="/bilder/9.jpeg" alt="9">
+              <img src="/bilder/10.jpeg" alt="10">
+              <img src="/bilder/12.jpg" alt="12">
+          
+              <!-- Duplicerat innehåll för sömlös loop -->
+              <img src="/bilder/3.jpg" alt="3">
+              <img src="/bilder/80.jpeg" alt="8">
+              <img src="/bilder/5.jpeg" alt="5">
+              <img src="/bilder/11.jpeg" alt="11">
+              <img src="/bilder/6.jpeg" alt="6">
+              <img src="/bilder/2.jpg" alt="2">
+              <img src="/bilder/7.jpeg" alt="7">
+              <img src="/bilder/9.jpeg" alt="9">
+              <img src="/bilder/10.jpeg" alt="10">
+              <img src="/bilder/12.jpg" alt="12">
+            </div>
+          </div>          
     </div>
 
-    </div>
-   
-    <div class="information-text2">
-        <h2>Bröllopsmiddag & fest</h2>
-        <p>
-            Bröllopsmiddag & fest kommer hållas vid Gourmetgården i Katrinetorp, Malmö. Mingel börjar vid 17:30, följt av middag och därefter en riktig fest!
-        </p>
-        
-        <div class="image-map-hover">
-        <img src="/bilder/gourmetgarden.png" alt="gourmetgården" class="hover-image">
-        <div class="map-overlay">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2256.9317887785937!2d13.001293577258771!3d55.55097367301011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653a18d87bd3dbd%3A0x5a2f95c69858db47!2sGourmetg%C3%A5rden!5e0!3m2!1sen!2sse!4v1747080571489!5m2!1sen!2sse"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
-    </div>
--->
 
-   
+<div id="content-container">
+    <!-- Här kommer innehållet laddas in -->
+  </div>
 
-</div>
+  <script>
+    async function loadPage(page) {
+      try {
+        const response = await fetch(`${page}.html`);
+        if (!response.ok) throw new Error('Kunde inte ladda sidan');
+        const html = await response.text();
+        document.getElementById('content-container').innerHTML = html;
+      } catch (error) {
+        document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
+      }
+    }
 
-<script src="/script.js"></script>
+    // Ladda startsidan vid första laddningen
+    loadPage('home');
+  </script>
 </body>
 </html>
-
-
