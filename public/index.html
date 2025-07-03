@@ -52,23 +52,49 @@
   </div>
 
   <script>
-    async function loadPage(page) {
+    async function loadPage(page, addToHistory = true) {
   try {
     const response = await fetch(`${page}.html`);
     if (!response.ok) throw new Error('Kunde inte ladda sidan');
     const html = await response.text();
+
     const container = document.getElementById('content-container');
     container.innerHTML = html;
 
-    history.pushState({ page }, '', `/${page}`);
-
-    if (page === 'rsvp') {
-      attachRsvpHandler(); // Koppla eventlyssnare när rsvp.html laddats
+    if (addToHistory) {
+      history.pushState({ page }, '', `/${page}`);
     }
+
+    // Kör eventuella script i den inladdade HTML:en (om du har några)
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
   } catch (error) {
     document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
   }
 }
+function initialLoad() {
+  const path = window.location.pathname.slice(1); // Tar bort första "/"
+  if (path) {
+    loadPage(path, false);
+  } else {
+    loadPage('home', false);
+  }
+}
+
+initialLoad();
+
+window.addEventListener('popstate', (event) => {
+  const page = event.state?.page || 'home';
+  loadPage(page, false); // false för att inte pusha ny historik
+});
 
 function attachRsvpHandler() {
   const form = document.getElementById('osa-form');

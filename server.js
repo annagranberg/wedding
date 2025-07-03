@@ -99,19 +99,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/rsvp', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'rsvp.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/ourStory', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'ourStory.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/bridalparty', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'bridalparty.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/onskelista', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'onskelista.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // === Starta server ===
