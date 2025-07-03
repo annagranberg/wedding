@@ -11,11 +11,12 @@
         <h1>Anna & Joel</h1>
         <p>1 Augusti 2026</p>
         <div class="button-row">
-            <button onclick="loadPage('home')" class="text-button">Information</button>
-            <button onclick="loadPage('ourStory')" class="text-button">Vår story</button>
-            <button onclick="loadPage('faq')" class="text-button">FaQ</button>
-            <button onclick="loadPage('bridalparty')" class="text-button">Brudfölje</button>
-            <button onclick="loadPage('rsvp')" class="text-button">OSA</button>
+          <button data-page="home" onclick="loadPage('home')" class="text-button">Information</button>
+          <button data-page="ourStory" onclick="loadPage('ourStory')" class="text-button">Vår story</button>
+          <button data-page="faq" onclick="loadPage('faq')" class="text-button">FaQ</button>
+          <button data-page="bridalparty" onclick="loadPage('bridalparty')" class="text-button">Brudfölje</button>
+          <button data-page="rsvp" onclick="loadPage('rsvp')" class="text-button">OSA</button>
+          
 
         </div>
         <div class="slideshow-container">
@@ -66,10 +67,10 @@
       // Ta bort aktiv klass från alla
       button.classList.remove('active');
       // Om knappens href matchar sidan, lägg på aktiv klass
-      const hrefPage = button.getAttribute('href').replace('/', '');
-      if (hrefPage === page) {
-        button.classList.add('active');
-      }
+      const btnPage = button.getAttribute('data-page');
+    if (btnPage === page) {
+      button.classList.add('active');
+    }
     });
 
     if (addToHistory) {
