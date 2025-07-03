@@ -45,7 +45,6 @@ body {
 
 .mySlides img {
     height: 600px;
-    margin-right: 5px; /* valfritt mellanrum */
     flex-shrink: 0;
 }
 
@@ -400,7 +399,7 @@ body {
 
     .button-row {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 8px;
         margin-top: 10px;
@@ -448,6 +447,10 @@ body {
         height: auto;
         display: block;
         margin: 10px auto;
+    }
+
+    .slideshow-container{
+        height: 200px;
     }
 }
 
