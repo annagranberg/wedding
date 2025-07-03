@@ -52,23 +52,50 @@
   </div>
 
   <script>
-    async function loadPage(page) {
+    async function loadPage(page, addToHistory = true) {
   try {
     const response = await fetch(`${page}.html`);
     if (!response.ok) throw new Error('Kunde inte ladda sidan');
     const html = await response.text();
+
     const container = document.getElementById('content-container');
     container.innerHTML = html;
 
-    history.pushState({ page }, '', `/${page}`);
+    // Markera rätt knapp som aktiv
+    document.querySelectorAll('.text-button').forEach(button => {
+      // Ta bort aktiv klass från alla
+      button.classList.remove('active');
+      // Om knappens href matchar sidan, lägg på aktiv klass
+      const hrefPage = button.getAttribute('href').replace('/', '');
+      if (hrefPage === page) {
+        button.classList.add('active');
+      }
+    });
+
+    if (addToHistory) {
+      history.pushState({ page }, '', `/${page}`);
+    }
+
+    // Kör eventuella script i den inladdade HTML:en (om du har några)
+    container.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      oldScript.remove();
+    });
 
     if (page === 'rsvp') {
-      attachRsvpHandler(); // Koppla eventlyssnare när rsvp.html laddats
+      attachRsvpHandler();
     }
   } catch (error) {
     document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
   }
 }
+
 
 function attachRsvpHandler() {
   const form = document.getElementById('osa-form');
