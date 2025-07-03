@@ -451,8 +451,22 @@ body {
         margin: 10px auto;
     }
 
-    .slideshow-container{
-        height: 200px;
+}
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 300px; 
+    }
+    .mySlides img {
+        height: 300px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .slideshow-container {
+        height: 150px;
+    }
+    .mySlides img {
+        height: 150px; 
     }
 }
 
