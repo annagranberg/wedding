@@ -11,11 +11,11 @@
         <h1>Anna & Joel</h1>
         <p>1 Augusti 2026</p>
         <div class="button-row">
-            <button onclick="loadPage('home')" class="text-button">Information</a>
-            <button onclick="loadPage('ourStory')" class="text-button">Vår story</a>
-            <button onclick="loadPage('onskelista')" class="text-button">FaQ</a>
-            <button onclick="loadPage('bridalparty')" class="text-button">Brudfölje</a>
-            <button onclick="loadPage('rsvp')" class="text-button">OSA</a>
+            <button onclick="loadPage('home')" class="text-button">Information</button>
+            <button onclick="loadPage('ourStory')" class="text-button">Vår story</button>
+            <button onclick="loadPage('onskelista')" class="text-button">FaQ</button>
+            <button onclick="loadPage('bridalparty')" class="text-button">Brudfölje</button>
+            <button onclick="loadPage('rsvp')" class="text-button">OSA</button>
 
         </div>
         <div class="slideshow-container">
@@ -53,18 +53,63 @@
 
   <script>
     async function loadPage(page) {
-      try {
-        const response = await fetch(`${page}.html`);
-        if (!response.ok) throw new Error('Kunde inte ladda sidan');
-        const html = await response.text();
-        document.getElementById('content-container').innerHTML = html;
-      } catch (error) {
-        document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
-      }
-    }
+  try {
+    const response = await fetch(`${page}.html`);
+    if (!response.ok) throw new Error('Kunde inte ladda sidan');
+    const html = await response.text();
+    const container = document.getElementById('content-container');
+    container.innerHTML = html;
 
-    // Ladda startsidan vid första laddningen
-    loadPage('home');
+    history.pushState({ page }, '', `/${page}`);
+
+    if (page === 'rsvp') {
+      attachRsvpHandler(); // Koppla eventlyssnare när rsvp.html laddats
+    }
+  } catch (error) {
+    document.getElementById('content-container').innerHTML = `<p>Fel: ${error.message}</p>`;
+  }
+}
+
+function attachRsvpHandler() {
+  const form = document.getElementById('osa-form');
+  const messageDiv = document.getElementById('osa-message');
+  if (!form) return;
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const data = {
+      namn: form.namn.value.trim(),
+      rsvp: form.status.value,
+      specialkost: form.kommentar.value.trim()
+    };
+
+    console.log('Skickar följande till servern:', data); 
+
+    fetch('/rsvp/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(result => {
+        messageDiv.textContent = result.message || 'OSA skickad!';
+
+        form.reset();
+      })
+      .catch(error => {
+        messageDiv.textContent = 'Något gick fel, försök igen.';
+        console.error('Error:', error);
+      });
+  });
+}
+
+// Exempel: ladda startsidan vid första laddning
+loadPage('home');
+
   </script>
 </body>
 </html>
+
